@@ -8,18 +8,35 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
+    override func viewDidLoad(){
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let view = UIView()
+        view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        view.backgroundColor = .white
+        
+        let bubbleView = BubbleView()
+        
+        bubbleView.isUserInteractionEnabled = true
+        let guestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(bugelClicked(_:)))
+        bubbleView.addGestureRecognizer(guestureRecognizer)
+        
+        view.addSubview(
+            bubbleView
+        )
+        
+        self.view.addSubview(
+            view
+        )
+ 
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @objc func bugelClicked(_ sender: Any) {
+        print("bugel clicked")
     }
-
-
+    
 }
 
