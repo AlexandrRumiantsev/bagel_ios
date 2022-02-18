@@ -21,14 +21,11 @@ class BubbleView: UIView {
         innerСircle.clipsToBounds = true
         innerСircle.backgroundColor = .white
         
-        
         innerСircle.center = CGPoint(x: self.bounds.width/2, y: self.bounds.height/2)
-        
         
         innerСircle.isUserInteractionEnabled = true
         let guestureRecognizerInner = UITapGestureRecognizer(target: self, action: #selector(innerСircleClicked(_:)))
         innerСircle.addGestureRecognizer(guestureRecognizerInner)
-        
         
         self.addSubview(innerСircle)
         
