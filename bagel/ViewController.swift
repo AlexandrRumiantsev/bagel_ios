@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     @objc func innerСircleClicked(_ sender: UITapGestureRecognizer) {
         
         let tapLocation = sender.location(in: sender.view)
-        let result = sqrt(pow((CGFloat(tapLocation.x) - bubbleView.arcCenter.x), 2) + pow(CGFloat(tapLocation.y)-CGFloat(bubbleView.arcCenter.y), 2) )
+        let result = sqrt(pow((CGFloat(tapLocation.x) - bubbleView.arcCenter.x),2) + pow(CGFloat(tapLocation.y)-CGFloat(bubbleView.arcCenter.y),2) )
         
         if(Int(result) > Int(bubbleView.radius) + 15) {
             print("Клик вне круга")
@@ -31,19 +31,12 @@ class ViewController: UIViewController {
     override func viewDidLoad(){
         super.viewDidLoad()
         
-        let view = UIView()
-        view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        view.backgroundColor = .white
-        
         let guestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(innerСircleClicked(_:)))
         bubbleView.addGestureRecognizer(guestureRecognizer)
-        
-        view.addSubview(
-            bubbleView
-        )
+        bubbleView.backgroundColor = .green
         
         self.view.addSubview(
-            view
+            bubbleView
         )
  
     }

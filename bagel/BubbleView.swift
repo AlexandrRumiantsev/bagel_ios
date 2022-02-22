@@ -10,21 +10,19 @@ import UIKit
 
 class BubbleView: UIView {
     
-    let arcCenter = CGPoint(x: 100, y: 100)
+    let arcCenter = CGPoint(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2)
     let radius = 150
     let startAngle = -CGFloat.pi / 2
     let endAngle = 2 * CGFloat.pi
     let clockwise = true
     let lineWidth = 30.0
+    let shapeLayer = CAShapeLayer()
     
     init() {
         super.init(frame: .zero)
 
         self.frame = CGRect(
-            x: UIScreen.main.bounds.width/2 - 100,
-            y: UIScreen.main.bounds.height/2 - 100,
-            width: UIScreen.main.bounds.width,
-            height: UIScreen.main.bounds.width
+            x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height
         )
         
         self.isUserInteractionEnabled = true
@@ -41,8 +39,12 @@ class BubbleView: UIView {
             clockwise: self.clockwise
         )
         
-        let shapeLayer = CAShapeLayer()
-
+        shapeLayer.frame = CGRect(
+            x: 0,
+            y: 0,
+            width: UIScreen.main.bounds.width,
+            height: UIScreen.main.bounds.height
+        )
         shapeLayer.path = circlePath.cgPath
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.strokeColor = UIColor.red.cgColor
