@@ -12,39 +12,39 @@ class BubbleView: UIView {
     
     init() {
         super.init(frame: .zero)
+
+        self.frame = CGRect(
+            x: UIScreen.main.bounds.width/2 - 100,
+            y: UIScreen.main.bounds.height/2 - 100,
+            width: UIScreen.main.bounds.width,
+            height: UIScreen.main.bounds.width
+        )
         
-        self.settingBuble()
-        
-        let innerСircle = UIView()
-        innerСircle.layer.cornerRadius = 50
-        innerСircle.frame = CGRect(x: 25, y: 25, width: 100, height: 100)
-        innerСircle.clipsToBounds = true
-        innerСircle.backgroundColor = .white
-        
-        innerСircle.center = CGPoint(x: self.bounds.width/2, y: self.bounds.height/2)
-        
-        innerСircle.isUserInteractionEnabled = true
-        let guestureRecognizerInner = UITapGestureRecognizer(target: self, action: #selector(innerСircleClicked(_:)))
-        innerСircle.addGestureRecognizer(guestureRecognizerInner)
-        
-        self.addSubview(innerСircle)
-        
+        self.isUserInteractionEnabled = true
+        self.drawOval()
     }
     
-    func settingBuble(){
-        self.layer.cornerRadius = (UIScreen.main.bounds.width/2) / 2
-        self.frame = CGRect(x: UIScreen.main.bounds.width/2 - 100, y:  UIScreen.main.bounds.height/2 - 100, width: UIScreen.main.bounds.width/2, height: UIScreen.main.bounds.width/2)
-        self.clipsToBounds = true
-        self.backgroundColor = .green
+    func drawOval() {
+  
+        let circlePath = UIBezierPath(
+            arcCenter: CGPoint(x: 100, y: 100),
+            radius: 100,
+            startAngle: -CGFloat.pi / 2,
+            endAngle: 2 * CGFloat.pi,
+            clockwise: true
+        )
+        let shapeLayer = CAShapeLayer()
+
+        shapeLayer.path = circlePath.cgPath
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.strokeColor = UIColor.red.cgColor
+        shapeLayer.lineWidth = 25.0
+        self.layer.addSublayer(shapeLayer)
+    
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    @objc func innerСircleClicked(_ sender: Any) {
-        print("innerСircle clicked")
     }
     
 

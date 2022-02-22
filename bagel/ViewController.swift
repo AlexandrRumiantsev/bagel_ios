@@ -10,6 +10,24 @@ import UIKit
 
 
 class ViewController: UIViewController {
+    
+    let bubbleView = BubbleView()
+    
+    @objc func innerСircleClicked(_ sender: UITapGestureRecognizer) {
+        print("innerСircle clicked ViewController")
+        let tapLocation = sender.location(in: sender.view)
+        //print(tapLocation.x)
+        //print(tapLocation.y)
+        //25 толщина границы
+        //print(bubbleView.layer.anchorPoint)
+         //print(bubbleView.layer.frame)
+        // 0-50 - Левая сторона
+        
+        guard let hitTestNode = self.augmentedRealityView.hitTest(tapLocation, options: nil).first?.node else { return }
+    
+         print(hitTestNode)
+
+    }
 
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -18,10 +36,8 @@ class ViewController: UIViewController {
         view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         view.backgroundColor = .white
         
-        let bubbleView = BubbleView()
         
-        bubbleView.isUserInteractionEnabled = true
-        let guestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(bugelClicked(_:)))
+        let guestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(innerСircleClicked(_:)))
         bubbleView.addGestureRecognizer(guestureRecognizer)
         
         view.addSubview(
@@ -34,9 +50,7 @@ class ViewController: UIViewController {
  
     }
     
-    @objc func bugelClicked(_ sender: Any) {
-        print("bugel clicked")
-    }
+   
     
 }
 
