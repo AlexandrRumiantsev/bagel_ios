@@ -10,6 +10,13 @@ import UIKit
 
 class BubbleView: UIView {
     
+    let arcCenter = CGPoint(x: 100, y: 100)
+    let radius = 150
+    let startAngle = -CGFloat.pi / 2
+    let endAngle = 2 * CGFloat.pi
+    let clockwise = true
+    let lineWidth = 30.0
+    
     init() {
         super.init(frame: .zero)
 
@@ -25,20 +32,21 @@ class BubbleView: UIView {
     }
     
     func drawOval() {
-  
+        
         let circlePath = UIBezierPath(
-            arcCenter: CGPoint(x: 100, y: 100),
-            radius: 100,
-            startAngle: -CGFloat.pi / 2,
-            endAngle: 2 * CGFloat.pi,
-            clockwise: true
+            arcCenter: self.arcCenter,
+            radius: CGFloat(self.radius),
+            startAngle: self.startAngle,
+            endAngle: self.endAngle,
+            clockwise: self.clockwise
         )
+        
         let shapeLayer = CAShapeLayer()
 
         shapeLayer.path = circlePath.cgPath
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.strokeColor = UIColor.red.cgColor
-        shapeLayer.lineWidth = 25.0
+        shapeLayer.lineWidth = CGFloat(self.lineWidth)
         self.layer.addSublayer(shapeLayer)
     
     }
@@ -47,5 +55,4 @@ class BubbleView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-
 }
