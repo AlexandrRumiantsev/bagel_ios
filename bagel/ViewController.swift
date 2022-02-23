@@ -12,15 +12,22 @@ import UIKit
 class ViewController: UIViewController {
     
     let bubbleView = BubbleView()
+    let halfFrameBuble = Int(BubbleView().lineWidth / 2)
+    let bubleRadius = Int(BubbleView().radius)
     
     @objc func innerСircleClicked(_ sender: UITapGestureRecognizer) {
         
         let tapLocation = sender.location(in: sender.view)
-        let result = sqrt(pow((CGFloat(tapLocation.x) - bubbleView.arcCenter.x),2) + pow(CGFloat(tapLocation.y)-CGFloat(bubbleView.arcCenter.y),2) )
+        let distanceToBorder = sqrt(
+            pow((CGFloat(tapLocation.x) - bubbleView.arcCenter.x), 2) + pow(CGFloat(tapLocation.y)-CGFloat(bubbleView.arcCenter.y),2)
+        )
         
-        if(Int(result) > Int(bubbleView.radius) + 15) {
+        let clicOutsideCircle = Int(distanceToBorder) > self.bubleRadius + self.halfFrameBuble
+        let circleСlick = Int(distanceToBorder) > self.bubleRadius + self.halfFrameBuble || Int(distanceToBorder) > self.bubleRadius - self.halfFrameBuble
+
+        if(clicOutsideCircle) {
             print("Клик вне круга")
-        }else if( Int(result) > Int(bubbleView.radius) + 15 || Int(result) > Int(bubbleView.radius) - 15){
+        }else if(circleСlick){
             print("Клик по кругу")
         }else {
             print("Клик внутри круга")

@@ -11,7 +11,7 @@ import UIKit
 class BubbleView: UIView {
     
     let arcCenter = CGPoint(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2)
-    let radius = 150
+    let radius = CGFloat(150)
     let startAngle = -CGFloat.pi / 2
     let endAngle = 2 * CGFloat.pi
     let clockwise = true
@@ -22,18 +22,21 @@ class BubbleView: UIView {
         super.init(frame: .zero)
 
         self.frame = CGRect(
-            x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height
+            x: 0,
+            y: 0,
+            width: UIScreen.main.bounds.width,
+            height: UIScreen.main.bounds.height
         )
         
         self.isUserInteractionEnabled = true
-        self.drawOval()
+        self.drawBubble()
     }
     
-    func drawOval() {
+    func drawBubble() {
         
         let circlePath = UIBezierPath(
             arcCenter: self.arcCenter,
-            radius: CGFloat(self.radius),
+            radius: self.radius,
             startAngle: self.startAngle,
             endAngle: self.endAngle,
             clockwise: self.clockwise
