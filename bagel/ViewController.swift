@@ -13,39 +13,32 @@ class ViewController: UIViewController {
     
     let bubbleView = BubbleView()
     let halfFrameBuble = Int(BubbleView().lineWidth / 2)
-    let bubleRadius = Int(BubbleView().radius)
     
     @objc func innerСircleClicked(_ sender: UITapGestureRecognizer) {
         
-        let tapLocation = sender.location(in: sender.view)
-        let distanceToBorder = sqrt(
-            pow((CGFloat(tapLocation.x) - bubbleView.arcCenter.x), 2) + pow(CGFloat(tapLocation.y)-CGFloat(bubbleView.arcCenter.y),2)
-        )
         
-        let clicOutsideCircle = Int(distanceToBorder) > self.bubleRadius + self.halfFrameBuble
-        let circleСlick = Int(distanceToBorder) > self.bubleRadius + self.halfFrameBuble || Int(distanceToBorder) > self.bubleRadius - self.halfFrameBuble
-
-        if(clicOutsideCircle) {
-            print("Клик вне круга")
-        }else if(circleСlick){
-            print("Клик по кругу")
-        }else {
-            print("Клик внутри круга")
-        }
-
+        print("Клик по кругу")
+        
+        //bubbleView.frame =  CGRect(x: 150, y: 150, width: 250, height: 250)
+        
     }
-
+    
     override func viewDidLoad(){
         super.viewDidLoad()
         
         let guestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(innerСircleClicked(_:)))
         bubbleView.addGestureRecognizer(guestureRecognizer)
         bubbleView.backgroundColor = .green
+        bubbleView.frame = CGRect(x: 50, y: 50, width: 100, height: 100)
         
         self.view.addSubview(
             bubbleView
         )
- 
+        
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("touchesBegan in ViewController")
     }
     
 }

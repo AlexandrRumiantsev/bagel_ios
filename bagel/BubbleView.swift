@@ -10,23 +10,17 @@ import UIKit
 
 class BubbleView: UIView {
     
-    let arcCenter = CGPoint(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2)
-    let radius = CGFloat(150)
     let startAngle = -CGFloat.pi / 2
     let endAngle = 2 * CGFloat.pi
     let clockwise = true
     let lineWidth = 30.0
     let shapeLayer = CAShapeLayer()
     
+    var arcCenter: CGPoint?
+    var radius: CGFloat?
+    
     init() {
         super.init(frame: .zero)
-
-        self.frame = CGRect(
-            x: 0,
-            y: 0,
-            width: UIScreen.main.bounds.width,
-            height: UIScreen.main.bounds.height
-        )
         
         self.isUserInteractionEnabled = true
         self.drawBubble()
@@ -34,30 +28,58 @@ class BubbleView: UIView {
     
     func drawBubble() {
         
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.strokeColor = UIColor.red.cgColor
+        shapeLayer.lineWidth = CGFloat(self.lineWidth)
+        self.layer.addSublayer(shapeLayer)
+        
+    }
+    
+    override func layoutSubviews() {
+        
+        self.radius = self.bounds.width / 2 - CGFloat(self.lineWidth) / 2
+        self.arcCenter = CGPoint(x: self.bounds.width / 2, y: self.bounds.height / 2)
+        
         let circlePath = UIBezierPath(
-            arcCenter: self.arcCenter,
-            radius: self.radius,
+            arcCenter: arcCenter!,
+            radius: radius!,
             startAngle: self.startAngle,
             endAngle: self.endAngle,
             clockwise: self.clockwise
         )
         
+        
         shapeLayer.frame = CGRect(
             x: 0,
             y: 0,
-            width: UIScreen.main.bounds.width,
-            height: UIScreen.main.bounds.height
+            width: self.bounds.width,
+            height: self.bounds.height
         )
         shapeLayer.path = circlePath.cgPath
-        shapeLayer.fillColor = UIColor.clear.cgColor
-        shapeLayer.strokeColor = UIColor.red.cgColor
-        shapeLayer.lineWidth = CGFloat(self.lineWidth)
-        self.layer.addSublayer(shapeLayer)
-    
+        
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+    
+        let arcCenter = self.arcCenter!
+        let radius = self.radius!
+        
+        let distanceToBorder = sqrt(
+            pow( (CGFloat(point.x) - arcCenter.x), 2) + pow(CGFloat(point.y) - CGFloat(arcCenter.y), 2)
+        )
+
+        let circleOutsideСlick = Int(distanceToBorder) > Int(radius) + Int(self.lineWidth / 2) || Int(distanceToBorder) < Int(radius) - Int(self.lineWidth / 2)
+        
+        
+        if (!circleOutsideСlick)
+        {
+            return true
+        }
+        
+        return false
+    }
+  
 }
