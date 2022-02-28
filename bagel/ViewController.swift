@@ -16,10 +16,9 @@ class ViewController: UIViewController {
     
     @objc func innerСircleClicked(_ sender: UITapGestureRecognizer) {
         
-        
-        print("Клик по кругу")
-        
-        //bubbleView.frame =  CGRect(x: 150, y: 150, width: 250, height: 250)
+        UIView.animate(withDuration: 0.5, delay: 0.4, options: [], animations: {
+            self.bubbleView.frame =  CGRect(x: 150, y: 150, width: 250, height: 250)
+        }, completion: nil)
         
     }
     
@@ -29,7 +28,7 @@ class ViewController: UIViewController {
         let guestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(innerСircleClicked(_:)))
         bubbleView.addGestureRecognizer(guestureRecognizer)
         bubbleView.backgroundColor = .green
-        bubbleView.frame = CGRect(x: 50, y: 50, width: 100, height: 100)
+        bubbleView.frame = CGRect(x: 50, y: 50, width: 250, height: 250)
         
         self.view.addSubview(
             bubbleView
