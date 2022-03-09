@@ -10,11 +10,11 @@ import UIKit
 
 class BubbleView: UIView {
     
-    let startAngle = -CGFloat.pi / 2
-    let endAngle = 2 * CGFloat.pi
-    let clockwise = true
-    let lineWidth = 30.0
-    let shapeLayer = CAShapeLayer()
+    var startAngle = -CGFloat.pi / 2
+    var endAngle = 2 * CGFloat.pi
+    var clockwise = true
+    var lineWidth = 30.0
+    var shapeLayer = CAShapeLayer()
     
     var arcCenter: CGPoint?
     var radius: CGFloat?

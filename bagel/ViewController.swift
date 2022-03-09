@@ -16,9 +16,43 @@ class ViewController: UIViewController {
     
     @objc func innerСircleClicked(_ sender: UITapGestureRecognizer) {
         
-        UIView.animate(withDuration: 0.5, delay: 0.4, options: [], animations: {
-            self.bubbleView.frame =  CGRect(x: 150, y: 150, width: 250, height: 250)
-        }, completion: nil)
+        let alert = UIAlertController(title: "Выберете вариант взаимодействия с окружностью", message: "Доступны действия: изменить размер и перемещение, вращение на 45 градусов.", preferredStyle: .alert)
+         
+        alert.addAction(UIAlertAction(title: "изменить размер и переместить", style: .default, handler: { action in
+            
+            UIView.animate(withDuration: 0.5, delay: 0.4, options: [], animations: {
+            
+                
+                let animation = CABasicAnimation(keyPath: "path")
+                animation.duration = 0.5
+
+                    animation.toValue = UIBezierPath(ovalIn: CGRect(x: 20, y: 20, width: 100, height: 100)).cgPath
+                    animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+
+                    animation.fillMode = kCAFillModeForwards
+                    animation.isRemovedOnCompletion = false
+
+                    self.bubbleView.shapeLayer.add(animation, forKey: nil)
+                
+  
+            }, completion: nil)
+            
+        }))
+        
+        
+        alert.addAction(UIAlertAction(title: "повернуть на 45 градусов", style: .default, handler: { action in
+            UIView.animate(withDuration: 1, delay: 0.4, options: [], animations: {
+                
+                var transform = self.bubbleView.shapeLayer.transform
+                transform = CATransform3DRotate(transform, CGFloat(45.0 * M_PI / 180.0), 0.0, 0.0, 1.0)
+                self.bubbleView.shapeLayer.transform = transform
+                
+            }, completion: nil)
+        }))
+         
+        self.present(alert, animated: true)
+        
+        
         
     }
     
