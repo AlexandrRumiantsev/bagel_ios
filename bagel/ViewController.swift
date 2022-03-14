@@ -23,24 +23,8 @@ class ViewController: UIViewController {
             UIView.animate(withDuration: 0.5, delay: 0.4, options: [], animations: {
             
                 
-                let animation = CABasicAnimation(keyPath: "path")
-                animation.duration = 0.5
-                
-                    animation.toValue = UIBezierPath(
-                        ovalIn: CGRect(
-                        x: self.bubbleView.shapeLayer.frame.midX - 5,
-                        y: self.bubbleView.shapeLayer.frame.midY - 5,
-                        width: self.bubbleView.shapeLayer.frame.width - 150,
-                        height: self.bubbleView.shapeLayer.frame.height - 150)
-                    ).cgPath
-                
-                    animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-
-                    animation.fillMode = kCAFillModeForwards
-                    animation.isRemovedOnCompletion = false
-
-                    self.bubbleView.shapeLayer.add(animation, forKey: nil)
-                
+                self.bubbleView.bounds = CGRect(x: 10, y: 0, width: 200, height: 200)
+                self.bubbleView.shapeLayer.bounds = CGRect(x: -10, y: 0, width: 200, height: 200)
   
             }, completion: nil)
             
@@ -49,14 +33,13 @@ class ViewController: UIViewController {
         
         alert.addAction(UIAlertAction(title: "повернуть на 45 градусов", style: .default, handler: { action in
             UIView.animate(withDuration: 1, delay: 0.4, options: [], animations: {
-                
-                var transform = self.bubbleView.shapeLayer.transform
-                transform = CATransform3DRotate(transform, CGFloat(45.0 * M_PI / 180.0), 0.0, 0.0, 1.0)
-                self.bubbleView.shapeLayer.transform = transform
+               
+                self.bubbleView.transform = CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
+
                 
             }, completion: { action in
-                print(self.bubbleView.shapeLayer.frame)
-                print(self.bubbleView.shapeLayer.bounds)
+                print(self.bubbleView.frame)
+                print(self.bubbleView.bounds)
             })
         }))
          

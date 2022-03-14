@@ -37,8 +37,15 @@ class BubbleView: UIView {
     
     override func layoutSubviews() {
         
+        
+        //Тут поменял frame на bounce и пофиксил багу с увеличением круга внутри фрейма при его трансформации
+    
         self.radius = self.bounds.width / 2 - CGFloat(self.lineWidth) / 2
         self.arcCenter = CGPoint(x: self.bounds.width / 2, y: self.bounds.height / 2)
+         
+        //self.radius = self.frame.width / 2 - CGFloat(self.lineWidth) / 2
+        //self.arcCenter = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
+        
         
         let circlePath = UIBezierPath(
             arcCenter: arcCenter!,
@@ -63,7 +70,8 @@ class BubbleView: UIView {
     }
     
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-    
+        
+        
         let arcCenter = self.arcCenter!
         let radius = self.radius!
         
