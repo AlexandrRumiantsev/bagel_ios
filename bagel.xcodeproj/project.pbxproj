@@ -13,7 +13,6 @@
 		1F8F236627BCE83F0035B193 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F8F236427BCE83F0035B193 /* Main.storyboard */; };
 		1F8F236927BCE83F0035B193 /* bagel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F8F236727BCE83F0035B193 /* bagel.xcdatamodeld */; };
 		1F8F236B27BCE8400035B193 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F8F236A27BCE8400035B193 /* Assets.xcassets */; };
-		1F8F236E27BCE8400035B193 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F8F236C27BCE8400035B193 /* LaunchScreen.storyboard */; };
 		1F8F237927BCE8410035B193 /* bagelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8F237827BCE8410035B193 /* bagelTests.swift */; };
 		1F8F238427BCE8410035B193 /* bagelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8F238327BCE8410035B193 /* bagelUITests.swift */; };
 /* End PBXBuildFile section */
@@ -43,7 +42,6 @@
 		1F8F236527BCE83F0035B193 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1F8F236827BCE83F0035B193 /* bagel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = bagel.xcdatamodel; sourceTree = "<group>"; };
 		1F8F236A27BCE8400035B193 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1F8F236D27BCE8400035B193 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F8F236F27BCE8400035B193 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F8F237427BCE8410035B193 /* bagelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bagelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F8F237827BCE8410035B193 /* bagelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bagelTests.swift; sourceTree = "<group>"; };
@@ -105,7 +103,6 @@
 				1F8F236227BCE83F0035B193 /* ViewController.swift */,
 				1F8F236427BCE83F0035B193 /* Main.storyboard */,
 				1F8F236A27BCE8400035B193 /* Assets.xcassets */,
-				1F8F236C27BCE8400035B193 /* LaunchScreen.storyboard */,
 				1F8F236F27BCE8400035B193 /* Info.plist */,
 				1F8F236727BCE83F0035B193 /* bagel.xcdatamodeld */,
 				1F826B5427BFF68900403E1A /* BubbleView.swift */,
@@ -235,7 +232,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F8F236E27BCE8400035B193 /* LaunchScreen.storyboard in Resources */,
 				1F8F236B27BCE8400035B193 /* Assets.xcassets in Resources */,
 				1F8F236627BCE83F0035B193 /* Main.storyboard in Resources */,
 			);
@@ -307,14 +303,6 @@
 				1F8F236527BCE83F0035B193 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		1F8F236C27BCE8400035B193 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1F8F236D27BCE8400035B193 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
